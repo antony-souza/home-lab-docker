@@ -1,0 +1,26 @@
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+entryPoints:
+  web:
+    address: ":80"
+  health:
+    address: ":8082"
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+    network: traefik-proxy
+    watch: true
+    allowEmptyServices: false
+
+ping:
+  entryPoint: health
+
+log:
+  level: INFO
+
+accessLog:
+  format: json
