@@ -34,3 +34,13 @@ separadamente.
 
 Consulte [as instruções completas](traefik/README.md) e
 [o exemplo de aplicação](traefik/examples/whoami/compose.yaml).
+
+## Cloudflare Tunnel por usuário
+
+O diretório `cloudflared/` contém um Compose para executar um conector de Tunnel
+em container. Cada usuário usa o token de um Tunnel criado na própria conta
+Cloudflare e um nome de projeto exclusivo. Todos podem encaminhar para o Traefik
+central em `http://server-traefik:80`, pela rede compartilhada `traefik-proxy`.
+
+Consulte [as instruções do conector](cloudflared/README.md) para configurar o
+domínio no painel, preencher o `.env`, subir e testar o container.

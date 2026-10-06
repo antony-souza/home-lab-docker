@@ -1,0 +1,23 @@
+name: ${TUNNEL_NAME:?Configure TUNNEL_NAME no .env com um nome exclusivo}
+
+services:
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN:?Configure TUNNEL_TOKEN no .env}
+    networks:
+      - proxy
+    labels:
+      traefik.enable: "false"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  proxy:
+    external: true
+    name: traefik-proxy
